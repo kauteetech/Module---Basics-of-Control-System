@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Control Systems - Interactive Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .animation-container {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .math-formula {
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+            border-left: 4px solid #3b82f6;
+        }
+        .concept-section {
+            margin: 4rem 0;
+            padding: 2rem 0;
+        }
+        .interactive-btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+        .interactive-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-bold mb-4">Robotics Control Systems</h1>
+            <p class="text-xl opacity-90">Interactive Learning for Beginners</p>
+            <div class="mt-8">
+                <div id="header-animation" class="w-32 h-32 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                    <div class="w-16 h-16 bg-white rounded-full animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex flex-wrap justify-center space-x-4 text-sm">
+                <a href="#dynamical-systems" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Dynamical Systems</a>
+                <a href="#modeling" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">System Modeling</a>
+                <a href="#state-space" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">State-Space</a>
+                <a href="#linear-nonlinear" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Linear/Nonlinear</a>
+                <a href="#numerical-methods" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Numerical Methods</a>
+                <a href="#mathematical-models" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Mathematical Models</a>
+                <a href="#discretization" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Discretization</a>
+                <a href="#analytical-solutions" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Analytical Solutions</a>
+                <a href="#nonlinear-properties" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Nonlinear Properties</a>
+                <a href="#stability" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Stability</a>
+                <a href="#phase-plane" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Phase-Plane</a>
+                <a href="#lyapunov-controller" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Lyapunov Controller</a>
+                <a href="#control-lyapunov" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Control Lyapunov</a>
+                <a href="#adaptive-control" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Adaptive Control</a>
+                <a href="#safety" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Safety</a>
+                <a href="#control-safety" class="text-blue-600 hover:text-blue-800 px-3 py-1 rounded">Control for Safety</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-8">
+
+        <!-- 1. Dynamical Systems and Control Systems -->
+        <section id="dynamical-systems" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Dynamical Systems and Control Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Think of a dynamical system like a car moving down the road. The car's position and speed change over time based on how much you press the gas pedal or brake. A control system is like the driver - it makes decisions about when to speed up or slow down to reach the destination safely.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Control systems are everywhere! They keep your house at the right temperature (thermostat), help robots walk without falling, and even control the flight of airplanes. They make machines smart and responsive.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without control systems, robots would be clumsy and unpredictable. Your air conditioner would never know when to turn off, and self-driving cars couldn't stay in their lanes.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="dynamical-animation" class="w-full h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg relative overflow-hidden">
+                            <div id="car" class="absolute w-16 h-8 bg-red-500 rounded-lg top-1/2 transform -translate-y-1/2" style="left: 20px;">
+                                <div class="w-3 h-3 bg-black rounded-full absolute -bottom-1 left-1"></div>
+                                <div class="w-3 h-3 bg-black rounded-full absolute -bottom-1 right-1"></div>
+                            </div>
+                            <div id="target" class="absolute w-8 h-8 bg-green-500 rounded-full top-1/2 transform -translate-y-1/2" style="right: 20px;"></div>
+                            <button id="start-car" class="interactive-btn text-white px-4 py-2 rounded absolute bottom-4 left-1/2 transform -translate-x-1/2">Start Journey</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>General Form:</strong> <em>dx/dt = f(x, u, t)</em></p>
+                    <p class="text-gray-600">Where x is the state (like position), u is the control input (like gas pedal), and t is time</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Modern Control Engineering" by Katsuhiko Ogata</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Factory Robot Arm</h4>
+                            <p class="text-gray-700">Robot arms in factories use control systems to pick up parts with perfect precision, moving smoothly from one position to another.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Smart Thermostat</h4>
+                            <p class="text-gray-700">Your home thermostat constantly measures temperature and adjusts heating/cooling to keep you comfortable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. System Modeling -->
+        <section id="modeling" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**How to Model Dynamical Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Modeling a system is like creating a recipe for how something behaves. Just like a recipe tells you how ingredients combine to make a cake, a mathematical model tells you how different forces and inputs affect a robot's movement.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Models help engineers test ideas on computers before building expensive robots. They can predict how a robot will behave and fix problems before they happen.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without models, engineers would have to build and test every idea physically, which is expensive and time-consuming. Many failures could have been prevented with good modeling.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="modeling-animation" class="w-full h-80 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg relative">
+                            <canvas id="pendulum-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="start-pendulum" class="interactive-btn text-white px-3 py-1 rounded text-sm">Start</button>
+                                <button id="stop-pendulum" class="interactive-btn text-white px-3 py-1 rounded text-sm">Stop</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Pendulum Example:</strong> <em>θ̈ + (g/L)sin(θ) = 0</em></p>
+                    <p class="text-gray-600">Where θ is angle, g is gravity, and L is length</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Introduction to Robotics" by John J. Craig</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Wind Turbine Control</h4>
+                            <p class="text-gray-700">Engineers model wind turbines to predict how they'll respond to different wind speeds and optimize power generation.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Washing Machine Balance</h4>
+                            <p class="text-gray-700">Washing machines use models to detect unbalanced loads and adjust spin speed to prevent shaking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. State-Space Model Components -->
+        <section id="state-space" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Components of the State-Space Model**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            A state-space model is like a complete health report for a robot. It tracks everything important: where it is, how fast it's moving, and what direction it's facing. Think of it as a dashboard that shows all the vital signs at once.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            This approach lets engineers design controllers that can handle multiple things at once - like a drone that needs to control its height, speed, and direction simultaneously.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without state-space models, complex systems would be nearly impossible to control effectively. You'd lose track of important variables and the system could become unstable.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="state-space-animation" class="w-full h-80 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg relative">
+                            <div class="absolute inset-4">
+                                <div class="grid grid-cols-2 gap-4 h-full">
+                                    <div class="bg-white rounded-lg p-4 shadow">
+                                        <h4 class="font-semibold text-purple-600 mb-2">Position (x)</h4>
+                                        <div id="position-bar" class="w-full h-4 bg-gray-200 rounded">
+                                            <div class="h-full bg-purple-500 rounded transition-all duration-500" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4 shadow">
+                                        <h4 class="font-semibold text-blue-600 mb-2">Velocity (v)</h4>
+                                        <div id="velocity-bar" class="w-full h-4 bg-gray-200 rounded">
+                                            <div class="h-full bg-blue-500 rounded transition-all duration-500" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4 shadow">
+                                        <h4 class="font-semibold text-green-600 mb-2">Acceleration (a)</h4>
+                                        <div id="acceleration-bar" class="w-full h-4 bg-gray-200 rounded">
+                                            <div class="h-full bg-green-500 rounded transition-all duration-500" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4 shadow">
+                                        <h4 class="font-semibold text-red-600 mb-2">Control Input (u)</h4>
+                                        <div id="control-bar" class="w-full h-4 bg-gray-200 rounded">
+                                            <div class="h-full bg-red-500 rounded transition-all duration-500" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="update-states" class="interactive-btn text-white px-4 py-2 rounded absolute bottom-1 left-1/2 transform -translate-x-1/2">Update States</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>State-Space Form:</strong> <em>ẋ = Ax + Bu</em></p>
+                    <p class="text-lg mb-2"><strong>Output:</strong> <em>y = Cx + Du</em></p>
+                    <p class="text-gray-600">Where x is state vector, u is input, y is output, and A, B, C, D are system matrices</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Linear System Theory and Design" by Chi-Tsong Chen</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Robotic Assembly Line</h4>
+                            <p class="text-gray-700">Assembly robots track position, speed, and force simultaneously to place parts with perfect precision.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Smartphone Stabilization</h4>
+                            <p class="text-gray-700">Your phone's camera uses state-space models to track motion and stabilize videos in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Linear and Nonlinear Systems -->
+        <section id="linear-nonlinear" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Linear and Nonlinear Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Linear systems are like straight roads - predictable and easy to navigate. If you double the gas pedal input, you get double the acceleration. Nonlinear systems are like winding mountain roads - small changes can have big, unexpected effects.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Linear systems are easier to analyze and control, making them perfect for many engineering applications. Nonlinear systems can model more complex, realistic behaviors.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Ignoring nonlinearity in real systems can lead to poor performance or instability. Treating nonlinear systems as linear can cause unexpected failures.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="linear-nonlinear-animation" class="w-full h-80 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg relative">
+                            <canvas id="comparison-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="show-linear" class="interactive-btn text-white px-3 py-1 rounded text-sm">Linear</button>
+                                <button id="show-nonlinear" class="interactive-btn text-white px-3 py-1 rounded text-sm">Nonlinear</button>
+                                <button id="show-both" class="interactive-btn text-white px-3 py-1 rounded text-sm">Both</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Linear:</strong> <em>y = ax + b</em></p>
+                    <p class="text-lg mb-2"><strong>Nonlinear:</strong> <em>y = ax² + bx + c</em></p>
+                    <p class="text-gray-600">Linear systems follow straight-line relationships, nonlinear systems have curves</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Nonlinear Systems" by Hassan K. Khalil</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Motor Speed Control</h4>
+                            <p class="text-gray-700">Electric motors often behave linearly at normal speeds, making them easy to control with simple linear controllers.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Car Braking System</h4>
+                            <p class="text-gray-700">Car brakes show nonlinear behavior - light pressure gives little stopping power, but firm pressure stops quickly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Numerical Methods -->
+        <section id="numerical-methods" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Numerical Methods for Simulating Control Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Numerical methods are like taking small steps to climb a mountain. Instead of trying to solve complex equations all at once, we break them into tiny pieces and solve each piece step by step using computers.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            These methods let us simulate how robots will behave before we build them. Engineers can test thousands of scenarios on computers in minutes instead of months of physical testing.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without numerical methods, we couldn't simulate complex systems. This would mean more expensive prototypes, longer development times, and higher risk of failures.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="numerical-animation" class="w-full h-80 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg relative">
+                            <canvas id="euler-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="start-euler" class="interactive-btn text-white px-3 py-1 rounded text-sm">Start Simulation</button>
+                                <button id="reset-euler" class="interactive-btn text-white px-3 py-1 rounded text-sm">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Euler's Method:</strong> <em>x(n+1) = x(n) + h × f(x(n), t(n))</em></p>
+                    <p class="text-gray-600">Where h is the step size and f is the system function</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Numerical Methods for Engineers" by Steven Chapra</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Flight Simulator</h4>
+                            <p class="text-gray-700">Aircraft simulators use numerical methods to model complex flight dynamics, allowing pilots to train safely.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Weather Prediction</h4>
+                            <p class="text-gray-700">Weather apps use numerical methods to simulate atmospheric conditions and predict tomorrow's weather.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Mathematical Models of Robotic Systems -->
+        <section id="mathematical-models" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Mathematical Models of Different Robotic Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Different robots need different mathematical "recipes." A walking robot needs equations for balance and leg movement, while a flying drone needs equations for lift and thrust. Each robot type has its own special mathematical model.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Specific models help engineers design better controllers for each type of robot. A drone controller won't work for a car, and vice versa.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Using the wrong model for a robot is like using a car manual to fix an airplane - it simply won't work and could be dangerous.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="robot-models-animation" class="w-full h-80 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-lg relative">
+                            <div class="absolute inset-4 grid grid-cols-3 gap-4">
+                                <div id="wheeled-robot" class="bg-white rounded-lg p-4 shadow cursor-pointer hover:shadow-lg transition-all">
+                                    <div class="w-12 h-8 bg-blue-500 rounded mx-auto mb-2 relative">
+                                        <div class="w-2 h-2 bg-black rounded-full absolute -bottom-1 left-1"></div>
+                                        <div class="w-2 h-2 bg-black rounded-full absolute -bottom-1 right-1"></div>
+                                    </div>
+                                    <p class="text-center text-sm font-semibold">Wheeled Robot</p>
+                                </div>
+                                <div id="flying-robot" class="bg-white rounded-lg p-4 shadow cursor-pointer hover:shadow-lg transition-all">
+                                    <div class="w-12 h-8 bg-green-500 rounded mx-auto mb-2 relative">
+                                        <div class="w-3 h-1 bg-gray-600 absolute -top-1 left-1"></div>
+                                        <div class="w-3 h-1 bg-gray-600 absolute -top-1 right-1"></div>
+                                        <div class="w-3 h-1 bg-gray-600 absolute -bottom-1 left-1"></div>
+                                        <div class="w-3 h-1 bg-gray-600 absolute -bottom-1 right-1"></div>
+                                    </div>
+                                    <p class="text-center text-sm font-semibold">Quadcopter</p>
+                                </div>
+                                <div id="walking-robot" class="bg-white rounded-lg p-4 shadow cursor-pointer hover:shadow-lg transition-all">
+                                    <div class="w-8 h-12 bg-red-500 rounded mx-auto mb-2 relative">
+                                        <div class="w-2 h-4 bg-red-400 absolute -bottom-4 left-1"></div>
+                                        <div class="w-2 h-4 bg-red-400 absolute -bottom-4 right-1"></div>
+                                    </div>
+                                    <p class="text-center text-sm font-semibold">Humanoid</p>
+                                </div>
+                            </div>
+                            <div id="model-display" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-4 py-2 rounded shadow">
+                                <p class="text-sm text-center">Click a robot to see its model!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Wheeled Robot:</strong> <em>ẋ = v cos(θ), ẏ = v sin(θ)</em></p>
+                    <p class="text-lg mb-2"><strong>Quadcopter:</strong> <em>z̈ = -g + (u₁/m)cos(φ)cos(θ)</em></p>
+                    <p class="text-gray-600">Each robot type has unique kinematic and dynamic equations</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Robotics: Modelling, Planning and Control" by Siciliano et al.</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Robotic Welding Arm</h4>
+                            <p class="text-gray-700">Welding robots use precise mathematical models to move along complex 3D paths with millimeter accuracy.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Robotic Vacuum</h4>
+                            <p class="text-gray-700">Your Roomba uses wheeled robot models to navigate around furniture and clean efficiently.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Discretization and Linearization -->
+        <section id="discretization" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Discretization and Linearization of Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Discretization is like taking snapshots of a moving car every second instead of watching a continuous video. Linearization is like drawing a straight line to approximate a curved road - it makes complex curves easier to work with.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Computers work with discrete snapshots, so discretization lets us use digital controllers. Linearization makes complex systems easier to analyze and control.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without discretization, we couldn't use digital computers for control. Without linearization, many control design techniques wouldn't work.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="discretization-animation" class="w-full h-80 bg-gradient-to-br from-rose-100 to-pink-100 rounded-lg relative">
+                            <canvas id="discretization-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="show-continuous" class="interactive-btn text-white px-3 py-1 rounded text-sm">Continuous</button>
+                                <button id="show-discrete" class="interactive-btn text-white px-3 py-1 rounded text-sm">Discrete</button>
+                                <button id="show-linear" class="interactive-btn text-white px-3 py-1 rounded text-sm">Linear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Discretization:</strong> <em>x[k+1] = Φx[k] + Γu[k]</em></p>
+                    <p class="text-lg mb-2"><strong>Linearization:</strong> <em>δẋ = A δx + B δu</em></p>
+                    <p class="text-gray-600">Converting continuous systems to discrete-time and nonlinear to linear</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Digital Control System Analysis and Design" by Phillips & Nagle</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Digital Motor Control</h4>
+                            <p class="text-gray-700">Industrial motors use discretized control systems that update commands thousands of times per second.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Digital Camera Autofocus</h4>
+                            <p class="text-gray-700">Camera autofocus systems use linearized models to quickly adjust lens position for sharp photos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Analytical Solutions -->
+        <section id="analytical-solutions" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Analytical Solutions of Linear Control Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Analytical solutions are like having the exact answer to a math problem instead of an approximation. For simple linear systems, we can write down exact formulas that tell us exactly what will happen at any time.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Exact solutions give us perfect predictions and help us understand system behavior completely. They're fast to compute and always accurate.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without analytical solutions, we'd have to rely on approximations and simulations, which take more time and might not be perfectly accurate.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="analytical-animation" class="w-full h-80 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-lg relative">
+                            <canvas id="analytical-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-1 left-1/3 transform -translate-x-1/4 space-x-2">
+                                <button id="step-response" class="interactive-btn text-white px-3 py-1 rounded text-sm">Step Response</button>
+                                <button id="impulse-response" class="interactive-btn text-white px-3 py-1 rounded text-sm">Impulse Response</button>
+                                <button id="ramp-response" class="interactive-btn text-white px-3 py-1 rounded text-sm">Ramp Response</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>General Solution:</strong> <em>x(t) = e^(At)x(0) + ∫₀ᵗ e^(A(t-τ))Bu(τ)dτ</em></p>
+                    <p class="text-gray-600">Exact solution for linear time-invariant systems</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Linear System Theory" by Joao Hespanha</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Servo Motor Control</h4>
+                            <p class="text-gray-700">Precision servo motors use analytical solutions to achieve exact positioning in manufacturing equipment.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Elevator Control</h4>
+                            <p class="text-gray-700">Elevators use analytical solutions to calculate exact acceleration profiles for smooth, comfortable rides.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Properties of Nonlinear Systems -->
+        <section id="nonlinear-properties" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Properties of Non-linear Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Nonlinear systems are like wild horses - they can be unpredictable and show surprising behaviors. Small changes in input can cause huge changes in output, and they might have multiple stable points or even chaotic behavior.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Understanding nonlinear properties helps engineers design robust controllers that work even when systems behave unexpectedly. Many real-world systems are inherently nonlinear.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Ignoring nonlinear properties can lead to system instability, poor performance, or even dangerous failures when the system behaves differently than expected.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="nonlinear-properties-animation" class="w-full h-80 bg-gradient-to-br from-amber-100 to-yellow-100 rounded-lg relative">
+                            <canvas id="nonlinear-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="show-bistable" class="interactive-btn text-white px-3 py-1 rounded text-sm">Bistable</button>
+                                <button id="show-limit-cycle" class="interactive-btn text-white px-3 py-1 rounded text-sm">Limit Cycle</button>
+                                <button id="show-chaos" class="interactive-btn text-white px-3 py-1 rounded text-sm">Chaos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Van der Pol Oscillator:</strong> <em>ẍ - μ(1-x²)ẋ + x = 0</em></p>
+                    <p class="text-gray-600">Example of nonlinear system with limit cycle behavior</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Nonlinear Dynamics and Chaos" by Steven Strogatz</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Chemical Reactor Control</h4>
+                            <p class="text-gray-700">Chemical reactors can have multiple stable operating points, requiring careful nonlinear control design.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Heart Pacemaker</h4>
+                            <p class="text-gray-700">Pacemakers must handle the nonlinear dynamics of heart rhythm to maintain healthy beating patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Stability of Linear Systems -->
+        <section id="stability" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Stability of a Linear System**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Stability is like riding a bicycle. A stable system returns to balance when disturbed, like how you naturally correct your balance when you wobble. An unstable system is like trying to balance a pencil on its tip - any small push makes it fall over.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Stable systems are predictable and safe. They recover from disturbances and maintain desired performance even when conditions change slightly.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Unstable systems can grow out of control, leading to dangerous oscillations, system damage, or complete failure. Safety is compromised without stability.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="stability-animation" class="w-full h-80 bg-gradient-to-br from-violet-100 to-purple-100 rounded-lg relative">
+                            <canvas id="stability-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="stable-demo" class="interactive-btn text-white px-3 py-1 rounded text-sm">Stable</button>
+                                <button id="unstable-demo" class="interactive-btn text-white px-3 py-1 rounded text-sm">Unstable</button>
+                                <button id="marginal-demo" class="interactive-btn text-white px-3 py-1 rounded text-sm">Marginal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Stability Condition:</strong> <em>Re(λᵢ) < 0 for all eigenvalues λᵢ</em></p>
+                    <p class="text-gray-600">All eigenvalues must have negative real parts for stability</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Modern Control Systems" by Richard Dorf</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Power Grid Control</h4>
+                            <p class="text-gray-700">Power grids must remain stable to prevent blackouts when generators or loads suddenly change.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Cruise Control</h4>
+                            <p class="text-gray-700">Car cruise control systems must be stable to maintain steady speed on hills and varying road conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Phase-Plane Analysis -->
+        <section id="phase-plane" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Phase-Plane Analysis**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Phase-plane analysis is like creating a map of how a system behaves. Instead of just tracking position over time, we plot position versus velocity, creating patterns that show us all possible behaviors of the system at once.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            This visual approach helps engineers understand complex system behaviors, find stable operating points, and predict how systems will respond to different conditions.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without phase-plane analysis, engineers might miss important system behaviors like limit cycles or multiple equilibrium points, leading to poor control design.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="phase-plane-animation" class="w-full h-80 bg-gradient-to-br from-sky-100 to-blue-100 rounded-lg relative">
+                            <canvas id="phase-plane-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="spiral-sink" class="interactive-btn text-white px-3 py-1 rounded text-sm">Spiral Sink</button>
+                                <button id="center-point" class="interactive-btn text-white px-3 py-1 rounded text-sm">Center</button>
+                                <button id="saddle-point" class="interactive-btn text-white px-3 py-1 rounded text-sm">Saddle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Phase Portrait:</strong> <em>dx₁/dt = f₁(x₁, x₂)</em></p>
+                    <p class="text-lg mb-2"><strong></strong> <em>dx₂/dt = f₂(x₁, x₂)</em></p>
+                    <p class="text-gray-600">Plotting x₂ vs x₁ shows system trajectories in phase space</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Nonlinear Systems Analysis" by M. Vidyasagar</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Robotic Joint Control</h4>
+                            <p class="text-gray-700">Robot joints use phase-plane analysis to plan smooth trajectories and avoid oscillations during movement.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Suspension System</h4>
+                            <p class="text-gray-700">Car suspension systems are designed using phase-plane analysis to provide comfortable rides without bouncing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. Lyapunov Controller Design -->
+        <section id="lyapunov-controller" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Lyapunov Based Controller Design for Nonlinear Systems**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Lyapunov controller design is like creating a "energy hill" where the desired state is at the bottom. The controller always pushes the system "downhill" toward the goal, ensuring it will eventually reach and stay at the desired position.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            This method guarantees stability for nonlinear systems, which is crucial for safety-critical applications like aircraft control or medical devices.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without Lyapunov-based design, nonlinear controllers might not guarantee stability, potentially leading to unpredictable or dangerous system behavior.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="lyapunov-animation" class="w-full h-80 bg-gradient-to-br from-lime-100 to-green-100 rounded-lg relative">
+                            <canvas id="lyapunov-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="start-lyapunov" class="interactive-btn text-white px-3 py-1 rounded text-sm">Start Control</button>
+                                <button id="add-disturbance" class="interactive-btn text-white px-3 py-1 rounded text-sm">Add Disturbance</button>
+                                <button id="reset-lyapunov" class="interactive-btn text-white px-3 py-1 rounded text-sm">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Lyapunov Function:</strong> <em>V(x) > 0 for x ≠ 0</em></p>
+                    <p class="text-lg mb-2"><strong>Stability Condition:</strong> <em>V̇(x) < 0 for x ≠ 0</em></p>
+                    <p class="text-gray-600">Energy-like function that decreases along system trajectories</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Nonlinear Systems" by Hassan K. Khalil</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Spacecraft Attitude Control</h4>
+                            <p class="text-gray-700">Satellites use Lyapunov controllers to maintain precise orientation in space despite orbital disturbances.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Segway Balance</h4>
+                            <p class="text-gray-700">Self-balancing scooters use Lyapunov-based control to keep riders upright and stable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Control Lyapunov Function -->
+        <section id="control-lyapunov" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Control Lyapunov Function**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            A Control Lyapunov Function is like having a GPS that not only shows you where you are, but also tells you exactly which direction to steer to reach your destination as quickly and safely as possible.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            CLFs provide a systematic way to design controllers for complex nonlinear systems, guaranteeing both stability and performance.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without CLFs, designing controllers for nonlinear systems becomes trial-and-error, with no guarantee of stability or optimal performance.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="clf-animation" class="w-full h-80 bg-gradient-to-br from-orange-100 to-red-100 rounded-lg relative">
+                            <canvas id="clf-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="clf-control" class="interactive-btn text-white px-3 py-1 rounded text-sm">CLF Control</button>
+                                <button id="change-target" class="interactive-btn text-white px-3 py-1 rounded text-sm">New Target</button>
+                                <button id="reset-clf" class="interactive-btn text-white px-3 py-1 rounded text-sm">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>CLF Condition:</strong> <em>inf{L_f V(x) + L_g V(x)u} < 0</em></p>
+                    <p class="text-gray-600">There exists a control input that makes the Lyapunov function decrease</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Mathematical Control Theory" by Eduardo Sontag</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Robotic Manipulator</h4>
+                            <p class="text-gray-700">Industrial robot arms use CLFs to plan optimal paths while avoiding obstacles and maintaining stability.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Drone Delivery</h4>
+                            <p class="text-gray-700">Delivery drones use CLF-based control to navigate efficiently while maintaining stable flight in windy conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. Adaptive Control -->
+        <section id="adaptive-control" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Adaptive Control**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Adaptive control is like a smart driver who learns about their car while driving. If the car starts behaving differently (maybe due to a flat tire), the controller automatically adjusts its strategy to maintain good performance.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Adaptive controllers work well even when system parameters change over time, such as when a robot's battery runs low or when environmental conditions change.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without adaptation, controllers might perform poorly when system conditions change, leading to degraded performance or instability over time.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="adaptive-animation" class="w-full h-80 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-lg relative">
+                            <canvas id="adaptive-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="start-adaptive" class="interactive-btn text-white px-3 py-1 rounded text-sm">Start</button>
+                                <button id="change-system" class="interactive-btn text-white px-3 py-1 rounded text-sm">Change System</button>
+                                <button id="reset-adaptive" class="interactive-btn text-white px-3 py-1 rounded text-sm">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Parameter Update:</strong> <em>θ̇ = -Γe^T P B</em></p>
+                    <p class="text-lg mb-2"><strong>Control Law:</strong> <em>u = θ^T φ(x)</em></p>
+                    <p class="text-gray-600">Parameters θ adapt based on tracking error e</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Adaptive Control" by Petros Ioannou</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Aircraft Autopilot</h4>
+                            <p class="text-gray-700">Aircraft autopilots adapt to changing weather conditions, fuel levels, and cargo weight during flight.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Smart Home Thermostat</h4>
+                            <p class="text-gray-700">Smart thermostats learn your home's thermal characteristics and adapt to seasonal changes and occupancy patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 15. Safety in Robotics -->
+        <section id="safety" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Safety in Robotics**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Safety in robotics is like having multiple safety nets when walking on a tightrope. Robots must be designed to never harm humans or damage property, even when something goes wrong with their sensors or computers.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Safe robots can work alongside humans, be trusted in homes and hospitals, and operate in critical applications where failure could be catastrophic.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Unsafe robots could injure people, damage property, or cause public fear and rejection of robotic technology. Safety is essential for robot acceptance.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="safety-animation" class="w-full h-80 bg-gradient-to-br from-red-100 to-pink-100 rounded-lg relative">
+                            <div class="absolute inset-4">
+                                <div class="grid grid-cols-2 gap-4 h-full">
+                                    <div class="bg-white rounded-lg p-4 shadow relative">
+                                        <h4 class="font-semibold text-green-600 mb-2">Safe Zone</h4>
+                                        <div id="safe-robot" class="w-8 h-8 bg-green-500 rounded-full mx-auto animate-bounce"></div>
+                                        <div class="absolute bottom-2 left-2 w-4 h-4 bg-blue-400 rounded-full"></div>
+                                        <div class="absolute bottom-2 right-2 w-4 h-4 bg-blue-400 rounded-full"></div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4 shadow relative">
+                                        <h4 class="font-semibold text-red-600 mb-2">Danger Zone</h4>
+                                        <div id="danger-robot" class="w-8 h-8 bg-red-500 rounded-full mx-auto"></div>
+                                        <div class="absolute bottom-2 left-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
+                                        <div class="absolute bottom-2 right-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4 shadow col-span-2">
+                                        <h4 class="font-semibold text-blue-600 mb-2">Safety Systems</h4>
+                                        <div class="flex justify-around">
+                                            <div class="text-center">
+                                                <div class="w-6 h-6 bg-blue-500 rounded mx-auto mb-1"></div>
+                                                <p class="text-xs">Sensors</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="w-6 h-6 bg-green-500 rounded mx-auto mb-1"></div>
+                                                <p class="text-xs">Emergency Stop</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="w-6 h-6 bg-purple-500 rounded mx-auto mb-1"></div>
+                                                <p class="text-xs">Barriers</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="trigger-safety" class="interactive-btn text-white px-4 py-2 rounded absolute bottom-4 left-1/2 transform -translate-x-1/2">Test Safety System</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Safety Constraint:</strong> <em>h(x) ≥ 0</em></p>
+                    <p class="text-lg mb-2"><strong>Barrier Function:</strong> <em>ḣ(x) ≥ -αh(x)</em></p>
+                    <p class="text-gray-600">System must stay within safe region defined by h(x)</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Safety-Critical Control" by Aaron Ames</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Collaborative Robot (Cobot)</h4>
+                            <p class="text-gray-700">Factory cobots have force sensors and safety systems to immediately stop if they contact a human worker.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Autonomous Vehicle</h4>
+                            <p class="text-gray-700">Self-driving cars have multiple safety systems including emergency braking and collision avoidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 16. Control for Safety -->
+        <section id="control-safety" class="concept-section">
+            <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">**Understanding Control for Safety in Robotics**</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4">**Concept Explanation**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Control for safety is like having a guardian angel that watches over the robot's every move. Even when the robot wants to move fast or take shortcuts, the safety controller ensures it never enters dangerous situations.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">**Applications and Benefits**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Safety-aware controllers allow robots to operate at high performance while guaranteeing they will never violate safety constraints, enabling human-robot collaboration.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">**Consequences of Absence**</h3>
+                        <p class="text-gray-700 mb-4">
+                            Without safety-aware control, robots might prioritize performance over safety, potentially leading to accidents or system failures in critical situations.
+                        </p>
+                    </div>
+                    
+                    <div class="animation-container">
+                        <div id="control-safety-animation" class="w-full h-80 bg-gradient-to-br from-emerald-100 to-green-100 rounded-lg relative">
+                            <canvas id="control-safety-canvas" width="400" height="300" class="absolute inset-0 mx-auto"></canvas>
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 space-x-2">
+                                <button id="normal-control" class="interactive-btn text-white px-3 py-1 rounded text-sm">Normal Control</button>
+                                <button id="safety-control" class="interactive-btn text-white px-3 py-1 rounded text-sm">Safety Control</button>
+                                <button id="reset-control-safety" class="interactive-btn text-white px-3 py-1 rounded text-sm">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="math-formula p-6 rounded-lg mt-6">
+                    <h3 class="text-xl font-semibold mb-4">**Mathematical Model**</h3>
+                    <p class="text-lg mb-2"><strong>Control Barrier Function:</strong> <em>u ∈ {u : L_f h(x) + L_g h(x)u ≥ -αh(x)}</em></p>
+                    <p class="text-gray-600">Control input must satisfy safety constraint at all times</p>
+                    <p class="text-sm text-gray-500 mt-2">Reference: "Control Barrier Functions" by Aaron Ames</p>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-purple-600 mb-4">**Real-World Use Cases**</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Industrial: Surgical Robot</h4>
+                            <p class="text-gray-700">Surgical robots use safety controllers to prevent excessive force and maintain precise movements near vital organs.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Daily Life: Smart Wheelchair</h4>
+                            <p class="text-gray-700">Powered wheelchairs use safety control to prevent falls down stairs or collisions with obstacles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-4">Continue Your Robotics Journey</h3>
+            <p class="text-lg opacity-90 mb-6">
+                You've learned the fundamentals of robotics control systems! These concepts form the foundation for advanced robotics and automation.
+            </p>
+            <div class="flex justify-center space-x-6 text-sm">
+                <a href="#" class="hover:text-blue-200">Advanced Topics</a>
+                <a href="#" class="hover:text-blue-200">Practice Problems</a>
+                <a href="#" class="hover:text-blue-200">Real Projects</a>
+                <a href="#" class="hover:text-blue-200">Community</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize all animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDynamicalSystemsAnimation();
+            initializePendulumAnimation();
+            initializeStateSpaceAnimation();
+            initializeLinearNonlinearAnimation();
+            initializeNumericalMethodsAnimation();
+            initializeRobotModelsAnimation();
+            initializeDiscretizationAnimation();
+            initializeAnalyticalAnimation();
+            initializeNonlinearPropertiesAnimation();
+            initializeStabilityAnimation();
+            initializePhasePlaneAnimation();
+            initializeLyapunovAnimation();
+            initializeCLFAnimation();
+            initializeAdaptiveAnimation();
+            initializeSafetyAnimation();
+            initializeControlSafetyAnimation();
+        });
+
+        // 1. Dynamical Systems Animation
+        function initializeDynamicalSystemsAnimation() {
+            const car = document.getElementById('car');
+            const startBtn = document.getElementById('start-car');
+            
+            startBtn.addEventListener('click', function() {
+                gsap.to(car, {
+                    duration: 3,
+                    left: 'calc(100% - 80px)',
+                    ease: "power2.inOut",
+                    onComplete: function() {
+                        gsap.to(car, {duration: 1, left: '20px', ease: "power2.inOut"});
+                    }
+                });
+            });
+        }
+
+        // 2. Pendulum Animation
+        function initializePendulumAnimation() {
+            const canvas = document.getElementById('pendulum-canvas');
+            const ctx = canvas.getContext('2d');
+            let animationId;
+            let angle = Math.PI / 4;
+            let angularVelocity = 0;
+            let isRunning = false;
+
+            function drawPendulum() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const centerX = canvas.width / 2;
+                const centerY = 50;
+                const length = 150;
+                const bobX = centerX + length * Math.sin(angle);
+                const bobY = centerY + length * Math.cos(angle);
+
+                // Draw string
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(bobX, bobY);
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw pivot
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = '#666';
+                ctx.fill();
+
+                // Draw bob
+                ctx.beginPath();
+                ctx.arc(bobX, bobY, 15, 0, 2 * Math.PI);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+            }
+
+            function animate() {
+                if (!isRunning) return;
+                
+                const gravity = 9.81;
+                const length = 150;
+                const angularAcceleration = -(gravity / length) * Math.sin(angle);
+                
+                angularVelocity += angularAcceleration * 0.16;
+                angle += angularVelocity * 0.16;
+                
+                drawPendulum();
+                animationId = requestAnimationFrame(animate);
+            }
+
+            document.getElementById('start-pendulum').addEventListener('click', function() {
+                isRunning = true;
+                animate();
+            });
+
+            document.getElementById('stop-pendulum').addEventListener('click', function() {
+                isRunning = false;
+                cancelAnimationFrame(animationId);
+            });
+
+            drawPendulum();
+        }
+
+        // 3. State Space Animation
+        function initializeStateSpaceAnimation() {
+            const updateBtn = document.getElementById('update-states');
+            
+            updateBtn.addEventListener('click', function() {
+                const bars = ['position-bar', 'velocity-bar', 'acceleration-bar', 'control-bar'];
+                bars.forEach(barId => {
+                    const bar = document.getElementById(barId).firstElementChild;
+                    const newWidth = Math.random() * 80 + 10;
+                    gsap.to(bar, {duration: 1, width: newWidth + '%', ease: "power2.out"});
+                });
+            });
+        }
+
+        // 4. Linear vs Nonlinear Animation
+        function initializeLinearNonlinearAnimation() {
+            const canvas = document.getElementById('comparison-canvas');
+            const ctx = canvas.getContext('2d');
+            let currentMode = 'both';
+
+            function drawComparison() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50);
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(50, 50);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw linear function
+                if (currentMode === 'linear' || currentMode === 'both') {
+                    ctx.beginPath();
+                    ctx.moveTo(50, canvas.height - 100);
+                    ctx.lineTo(canvas.width - 50, 100);
+                    ctx.strokeStyle = '#3b82f6';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                }
+
+                // Draw nonlinear function
+                if (currentMode === 'nonlinear' || currentMode === 'both') {
+                    ctx.beginPath();
+                    ctx.moveTo(50, canvas.height - 50);
+                    for (let x = 50; x < canvas.width - 50; x += 2) {
+                        const t = (x - 50) / (canvas.width - 100);
+                        const y = canvas.height - 50 - 100 * Math.sin(t * Math.PI * 2);
+                        if (x === 50) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = '#ef4444';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                }
+            }
+
+            document.getElementById('show-linear').addEventListener('click', function() {
+                currentMode = 'linear';
+                drawComparison();
+            });
+
+            document.getElementById('show-nonlinear').addEventListener('click', function() {
+                currentMode = 'nonlinear';
+                drawComparison();
+            });
+
+            document.getElementById('show-both').addEventListener('click', function() {
+                currentMode = 'both';
+                drawComparison();
+            });
+
+            drawComparison();
+        }
+
+        // 5. Numerical Methods Animation
+        function initializeNumericalMethodsAnimation() {
+            const canvas = document.getElementById('euler-canvas');
+            const ctx = canvas.getContext('2d');
+            let points = [];
+            let isAnimating = false;
+
+            function drawEulerMethod() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50);
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(50, 50);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw points and steps
+                if (points.length > 0) {
+                    ctx.strokeStyle = '#3b82f6';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(points[0].x, points[0].y);
+                    
+                    for (let i = 1; i < points.length; i++) {
+                        ctx.lineTo(points[i].x, points[i].y);
+                    }
+                    ctx.stroke();
+
+                    // Draw points
+                    points.forEach(point => {
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#ef4444';
+                        ctx.fill();
+                    });
+                }
+            }
+
+            document.getElementById('start-euler').addEventListener('click', function() {
+                if (isAnimating) return;
+                isAnimating = true;
+                points = [{x: 50, y: canvas.height - 100}];
+                
+                const interval = setInterval(() => {
+                    if (points.length > 20) {
+                        clearInterval(interval);
+                        isAnimating = false;
+                        return;
+                    }
+                    
+                    const lastPoint = points[points.length - 1];
+                    const h = 15; // step size
+                    const slope = -0.1; // simple exponential decay
+                    const newX = lastPoint.x + h;
+                    const newY = lastPoint.y + h * slope * (lastPoint.y - canvas.height + 50);
+                    
+                    points.push({x: newX, y: newY});
+                    drawEulerMethod();
+                }, 200);
+            });
+
+            document.getElementById('reset-euler').addEventListener('click', function() {
+                points = [];
+                isAnimating = false;
+                drawEulerMethod();
+            });
+
+            drawEulerMethod();
+        }
+
+        // 6. Robot Models Animation
+        function initializeRobotModelsAnimation() {
+            const modelDisplay = document.getElementById('model-display');
+            
+            document.getElementById('wheeled-robot').addEventListener('click', function() {
+                modelDisplay.innerHTML = '<p class="text-sm text-center"><strong>Wheeled Robot:</strong> ẋ = v cos(θ), ẏ = v sin(θ)</p>';
+                gsap.from(modelDisplay, {duration: 0.5, scale: 0.8, opacity: 0});
+            });
+
+            document.getElementById('flying-robot').addEventListener('click', function() {
+                modelDisplay.innerHTML = '<p class="text-sm text-center"><strong>Quadcopter:</strong> z̈ = -g + (u₁/m)cos(φ)cos(θ)</p>';
+                gsap.from(modelDisplay, {duration: 0.5, scale: 0.8, opacity: 0});
+            });
+
+            document.getElementById('walking-robot').addEventListener('click', function() {
+                modelDisplay.innerHTML = '<p class="text-sm text-center"><strong>Humanoid:</strong> Complex multi-body dynamics</p>';
+                gsap.from(modelDisplay, {duration: 0.5, scale: 0.8, opacity: 0});
+            });
+        }
+
+        // 7. Discretization Animation
+        function initializeDiscretizationAnimation() {
+            const canvas = document.getElementById('discretization-canvas');
+            const ctx = canvas.getContext('2d');
+            let currentView = 'linear';
+
+            function drawDiscretization() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50);
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(50, 50);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                if (currentView === 'continuous') {
+                    // Draw smooth curve
+                    ctx.beginPath();
+                    ctx.moveTo(50, canvas.height - 100);
+                    for (let x = 50; x < canvas.width - 50; x += 2) {
+                        const t = (x - 50) / (canvas.width - 100);
+                        const y = canvas.height - 100 - 50 * Math.sin(t * Math.PI * 2);
+                        ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = '#3b82f6';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                } else if (currentView === 'discrete') {
+                    // Draw discrete points
+                    for (let i = 0; i <= 10; i++) {
+                        const x = 50 + i * (canvas.width - 100) / 10;
+                        const t = i / 10;
+                        const y = canvas.height - 100 - 50 * Math.sin(t * Math.PI * 2);
+                        
+                        ctx.beginPath();
+                        ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#ef4444';
+                        ctx.fill();
+                        
+                        if (i > 0) {
+                            const prevX = 50 + (i-1) * (canvas.width - 100) / 10;
+                            const prevT = (i-1) / 10;
+                            const prevY = canvas.height - 100 - 50 * Math.sin(prevT * Math.PI * 2);
+                            
+                            ctx.beginPath();
+                            ctx.moveTo(prevX, prevY);
+                            ctx.lineTo(x, prevY);
+                            ctx.lineTo(x, y);
+                            ctx.strokeStyle = '#ef4444';
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                        }
+                    }
+                } else if (currentView === 'linear') {
+                    // Draw linearized approximation
+                    ctx.beginPath();
+                    ctx.moveTo(50, canvas.height - 100);
+                    ctx.lineTo(canvas.width - 50, canvas.height - 150);
+                    ctx.strokeStyle = '#10b981';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                }
+            }
+
+            document.getElementById('show-continuous').addEventListener('click', function() {
+                currentView = 'continuous';
+                drawDiscretization();
+            });
+
+            document.getElementById('show-discrete').addEventListener('click', function() {
+                currentView = 'discrete';
+                drawDiscretization();
+            });
+
+            document.getElementById('show-linear').addEventListener('click', function() {
+                currentView = 'linear';
+                drawDiscretization();
+            });
+
+            drawDiscretization();
+        }
+
+        // 8. Analytical Solutions Animation
+        function initializeAnalyticalAnimation() {
+            const canvas = document.getElementById('analytical-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function drawResponse(type) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50);
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(50, 50);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                
+                for (let x = 50; x < canvas.width - 50; x += 2) {
+                    const t = (x - 50) / (canvas.width - 100) * 5; // 0 to 5 seconds
+                    let y;
+                    
+                    if (type === 'step') {
+                        y = canvas.height - 50 - 100 * (1 - Math.exp(-t));
+                    } else if (type === 'impulse') {
+                        y = canvas.height - 50 - 100 * t * Math.exp(-t);
+                    } else if (type === 'ramp') {
+                        y = canvas.height - 50 - 20 * t;
+                    }
+                    
+                    ctx.lineTo(x, y);
+                }
+                
+                ctx.strokeStyle = '#3b82f6';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+
+            document.getElementById('step-response').addEventListener('click', () => drawResponse('step'));
+            document.getElementById('impulse-response').addEventListener('click', () => drawResponse('impulse'));
+            document.getElementById('ramp-response').addEventListener('click', () => drawResponse('ramp'));
+
+            drawResponse('step');
+        }
+
+        // 9. Nonlinear Properties Animation
+        function initializeNonlinearPropertiesAnimation() {
+            const canvas = document.getElementById('nonlinear-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function drawNonlinearBehavior(type) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(canvas.width/2, canvas.height - 50);
+                ctx.lineTo(canvas.width/2, 50);
+                ctx.moveTo(50, canvas.height/2);
+                ctx.lineTo(canvas.width - 50, canvas.height/2);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                if (type === 'bistable') {
+                    // Draw potential wells
+                    ctx.beginPath();
+                    for (let x = 50; x < canvas.width - 50; x += 2) {
+                        const t = (x - canvas.width/2) / 100;
+                        const y = canvas.height/2 + 50 * (t*t*t*t - 2*t*t);
+                        if (x === 50) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = '#3b82f6';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                } else if (type === 'limit-cycle') {
+                    // Draw limit cycle
+                    ctx.beginPath();
+                    for (let i = 0; i <= 100; i++) {
+                        const angle = i * 2 * Math.PI / 100;
+                        const r = 80;
+                        const x = canvas.width/2 + r * Math.cos(angle);
+                        const y = canvas.height/2 + r * Math.sin(angle);
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = '#ef4444';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                } else if (type === 'chaos') {
+                    // Draw chaotic trajectory
+                    let x = 0.1, y = 0.1, z = 0.1;
+                    ctx.beginPath();
+                    ctx.moveTo(canvas.width/2, canvas.height/2);
+                    
+                    for (let i = 0; i < 1000; i++) {
+                        const dt = 0.01;
+                        const sigma = 10, rho = 28, beta = 8/3;
+                        
+                        const dx = sigma * (y - x);
+                        const dy = x * (rho - z) - y;
+                        const dz = x * y - beta * z;
+                        
+                        x += dx * dt;
+                        y += dy * dt;
+                        z += dz * dt;
+                        
+                        const plotX = canvas.width/2 + x * 5;
+                        const plotY = canvas.height/2 + y * 5;
+                        
+                        if (plotX > 50 && plotX < canvas.width - 50 && plotY > 50 && plotY < canvas.height - 50) {
+                            ctx.lineTo(plotX, plotY);
+                        }
+                    }
+                    ctx.strokeStyle = '#10b981';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+
+            document.getElementById('show-bistable').addEventListener('click', () => drawNonlinearBehavior('bistable'));
+            document.getElementById('show-limit-cycle').addEventListener('click', () => drawNonlinearBehavior('limit-cycle'));
+            document.getElementById('show-chaos').addEventListener('click', () => drawNonlinearBehavior('chaos'));
+
+            drawNonlinearBehavior('bistable');
+        }
+
+        // 10. Stability Animation
+        function initializeStabilityAnimation() {
+            const canvas = document.getElementById('stability-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function drawStabilityDemo(type) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50);
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(50, 50);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 100);
+                
+                for (let x = 50; x < canvas.width - 50; x += 2) {
+                    const t = (x - 50) / (canvas.width - 100) * 10;
+                    let y;
+                    
+                    if (type === 'stable') {
+                        y = canvas.height - 100 - 50 * Math.exp(-t) * Math.cos(5*t);
+                    } else if (type === 'unstable') {
+                        y = canvas.height - 100 - 10 * Math.exp(0.2*t) * Math.cos(3*t);
+                    } else if (type === 'marginal') {
+                        y = canvas.height - 100 - 50 * Math.cos(2*t);
+                    }
+                    
+                    ctx.lineTo(x, Math.max(50, Math.min(canvas.height - 50, y)));
+                }
+                
+                const colors = {stable: '#10b981', unstable: '#ef4444', marginal: '#f59e0b'};
+                ctx.strokeStyle = colors[type];
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
+
+            document.getElementById('stable-demo').addEventListener('click', () => drawStabilityDemo('stable'));
+            document.getElementById('unstable-demo').addEventListener('click', () => drawStabilityDemo('unstable'));
+            document.getElementById('marginal-demo').addEventListener('click', () => drawStabilityDemo('marginal'));
+
+            drawStabilityDemo('stable');
+        }
+
+        // 11. Phase Plane Animation
+        function initializePhasePlaneAnimation() {
+            const canvas = document.getElementById('phase-plane-canvas');
+            const ctx = canvas.getContext('2d');
+
+            function drawPhasePlane(type) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(canvas.width/2, canvas.height - 50);
+                ctx.lineTo(canvas.width/2, 50);
+                ctx.moveTo(50, canvas.height/2);
+                ctx.lineTo(canvas.width - 50, canvas.height/2);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw trajectories
+                const centerX = canvas.width/2;
+                const centerY = canvas.height/2;
+                
+                for (let i = 0; i < 5; i++) {
+                    ctx.beginPath();
+                    const startAngle = i * 2 * Math.PI / 5;
+                    
+                    for (let j = 0; j <= 100; j++) {
+                        const t = j * 0.1;
+                        let x, y;
+                        
+                        if (type === 'spiral-sink') {
+                            const r = 80 * Math.exp(-0.1 * t);
+                            x = centerX + r * Math.cos(t + startAngle);
+                            y = centerY + r * Math.sin(t + startAngle);
+                        } else if (type === 'center') {
+                            const r = 60 + i * 10;
+                            x = centerX + r * Math.cos(t + startAngle);
+                            y = centerY + r * Math.sin(t + startAngle);
+                        } else if (type === 'saddle') {
+                            x = centerX + (40 + i * 10) * Math.cosh(0.1 * t) * Math.cos(startAngle);
+                            y = centerY + (40 + i * 10) * Math.sinh(0.1 * t) * Math.sin(startAngle);
+                        }
+                        
+                        if (j === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                        
+                        if (x < 50 || x > canvas.width - 50 || y < 50 || y > canvas.height - 50) break;
+                    }
+                    
+                    const colors = {'spiral-sink': '#10b981', 'center': '#3b82f6', 'saddle': '#ef4444'};
+                    ctx.strokeStyle = colors[type];
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+            }
+
+            document.getElementById('spiral-sink').addEventListener('click', () => drawPhasePlane('spiral-sink'));
+            document.getElementById('center-point').addEventListener('click', () => drawPhasePlane('center'));
+            document.getElementById('saddle-point').addEventListener('click', () => drawPhasePlane('saddle'));
+
+            drawPhasePlane('spiral-sink');
+        }
+
+        // 12. Lyapunov Animation
+        function initializeLyapunovAnimation() {
+            const canvas = document.getElementById('lyapunov-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId;
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < 10; i++) {
+                    particles.push({
+                        x: Math.random() * (canvas.width - 100) + 50,
+                        y: Math.random() * (canvas.height - 100) + 50,
+                        vx: (Math.random() - 0.5) * 4,
+                        vy: (Math.random() - 0.5) * 4
+                    });
+                }
+            }
+
+            function drawLyapunov() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw target
+                const targetX = canvas.width / 2;
+                const targetY = canvas.height / 2;
+                ctx.beginPath();
+                ctx.arc(targetX, targetY, 20, 0, 2 * Math.PI);
+                ctx.fillStyle = '#10b981';
+                ctx.fill();
+
+                // Draw particles
+                particles.forEach(particle => {
+                    // Lyapunov control law
+                    const dx = targetX - particle.x;
+                    const dy = targetY - particle.y;
+                    const distance = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (distance > 25) {
+                        particle.vx += dx * 0.001;
+                        particle.vy += dy * 0.001;
+                    }
+                    
+                    // Apply damping
+                    particle.vx *= 0.98;
+                    particle.vy *= 0.98;
+                    
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, 5, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#3b82f6';
+                    ctx.fill();
+                });
+                
+                animationId = requestAnimationFrame(drawLyapunov);
+            }
+
+            document.getElementById('start-lyapunov').addEventListener('click', function() {
+                initParticles();
+                drawLyapunov();
+            });
+
+            document.getElementById('add-disturbance').addEventListener('click', function() {
+                particles.forEach(particle => {
+                    particle.vx += (Math.random() - 0.5) * 10;
+                    particle.vy += (Math.random() - 0.5) * 10;
+                });
+            });
+
+            document.getElementById('reset-lyapunov').addEventListener('click', function() {
+                cancelAnimationFrame(animationId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+        }
+
+        // 13. Control Lyapunov Function Animation
+        function initializeCLFAnimation() {
+            const canvas = document.getElementById('clf-canvas');
+            const ctx = canvas.getContext('2d');
+            let robot = {x: 100, y: 100};
+            let target = {x: 300, y: 150};
+            let animationId;
+            let isControlling = false;
+
+            function drawCLF() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw target
+                ctx.beginPath();
+                ctx.arc(target.x, target.y, 15, 0, 2 * Math.PI);
+                ctx.fillStyle = '#10b981';
+                ctx.fill();
+
+                // Draw robot
+                ctx.beginPath();
+                ctx.arc(robot.x, robot.y, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+
+                // Draw path
+                ctx.beginPath();
+                ctx.moveTo(robot.x, robot.y);
+                ctx.lineTo(target.x, target.y);
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                if (isControlling) {
+                    // CLF control law
+                    const dx = target.x - robot.x;
+                    const dy = target.y - robot.y;
+                    const distance = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (distance > 20) {
+                        robot.x += dx * 0.02;
+                        robot.y += dy * 0.02;
+                    }
+                    
+                    animationId = requestAnimationFrame(drawCLF);
+                }
+            }
+
+            document.getElementById('clf-control').addEventListener('click', function() {
+                isControlling = true;
+                drawCLF();
+            });
+
+            document.getElementById('change-target').addEventListener('click', function() {
+                target.x = Math.random() * (canvas.width - 100) + 50;
+                target.y = Math.random() * (canvas.height - 100) + 50;
+                drawCLF();
+            });
+
+            document.getElementById('reset-clf').addEventListener('click', function() {
+                isControlling = false;
+                cancelAnimationFrame(animationId);
+                robot = {x: 100, y: 100};
+                target = {x: 300, y: 150};
+                drawCLF();
+            });
+
+            drawCLF();
+        }
+
+        // 14. Adaptive Control Animation
+        function initializeAdaptiveAnimation() {
+            const canvas = document.getElementById('adaptive-canvas');
+            const ctx = canvas.getContext('2d');
+            let time = 0;
+            let systemParam = 1.0;
+            let estimatedParam = 0.5;
+            let animationId;
+            let isRunning = false;
+
+            function drawAdaptive() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw axes
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50);
+                ctx.moveTo(50, canvas.height - 50);
+                ctx.lineTo(50, 50);
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Draw true parameter
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50 - systemParam * 100);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50 - systemParam * 100);
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Draw estimated parameter
+                ctx.beginPath();
+                ctx.moveTo(50, canvas.height - 50 - estimatedParam * 100);
+                ctx.lineTo(canvas.width - 50, canvas.height - 50 - estimatedParam * 100);
+                ctx.strokeStyle = '#3b82f6';
+                ctx.lineWidth = 3;
+                ctx.setLineDash([10, 5]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Add labels
+                ctx.fillStyle = '#10b981';
+                ctx.font = '12px Arial';
+                ctx.fillText('True Parameter', canvas.width - 120, canvas.height - 50 - systemParam * 100 - 10);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fillText('Estimated', canvas.width - 120, canvas.height - 50 - estimatedParam * 100 + 20);
+
+                if (isRunning) {
+                    // Adaptive law
+                    const error = systemParam - estimatedParam;
+                    estimatedParam += error * 0.01;
+                    time += 0.1;
+                    
+                    animationId = requestAnimationFrame(drawAdaptive);
+                }
+            }
+
+            document.getElementById('start-adaptive').addEventListener('click', function() {
+                isRunning = true;
+                drawAdaptive();
+            });
+
+            document.getElementById('change-system').addEventListener('click', function() {
+                systemParam = Math.random() * 1.5 + 0.5;
+                drawAdaptive();
+            });
+
+            document.getElementById('reset-adaptive').addEventListener('click', function() {
+                isRunning = false;
+                cancelAnimationFrame(animationId);
+                time = 0;
+                systemParam = 1.0;
+                estimatedParam = 0.5;
+                drawAdaptive();
+            });
+
+            drawAdaptive();
+        }
+
+        // 15. Safety Animation
+        function initializeSafetyAnimation() {
+            const safeRobot = document.getElementById('safe-robot');
+            const dangerRobot = document.getElementById('danger-robot');
+            const triggerBtn = document.getElementById('trigger-safety');
+            
+            triggerBtn.addEventListener('click', function() {
+                // Simulate safety system activation
+                gsap.to(dangerRobot, {duration: 0.5, backgroundColor: '#10b981', ease: "power2.out"});
+                gsap.to(safeRobot, {duration: 0.5, scale: 1.2, yoyo: true, repeat: 1});
+                
+                setTimeout(() => {
+                    gsap.to(dangerRobot, {duration: 0.5, backgroundColor: '#ef4444'});
+                }, 2000);
+            });
+        }
+
+        // 16. Control for Safety Animation
+        function initializeControlSafetyAnimation() {
+            const canvas = document.getElementById('control-safety-canvas');
+            const ctx = canvas.getContext('2d');
+            let robot = {x: 100, y: 150};
+            let obstacle = {x: 250, y: 150, radius: 40};
+            let target = {x: 350, y: 150};
+            let mode = 'normal';
+            let animationId;
+            let isMoving = false;
+
+            function drawControlSafety() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw obstacle
+                ctx.beginPath();
+                ctx.arc(obstacle.x, obstacle.y, obstacle.radius, 0, 2 * Math.PI);
+                ctx.fillStyle = '#ef4444';
+                ctx.fill();
+
+                // Draw safety zone
+                ctx.beginPath();
+                ctx.arc(obstacle.x, obstacle.y, obstacle.radius + 20, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Draw target
+                ctx.beginPath();
+                ctx.arc(target.x, target.y, 15, 0, 2 * Math.PI);
+                ctx.fillStyle = '#10b981';
+                ctx.fill();
+
+                // Draw robot
+                ctx.beginPath();
+                ctx.arc(robot.x, robot.y, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+
+                if (isMoving) {
+                    const dx = target.x - robot.x;
+                    const dy = target.y - robot.y;
+                    const distToObstacle = Math.sqrt((robot.x - obstacle.x)**2 + (robot.y - obstacle.y)**2);
+                    
+                    if (mode === 'safety' && distToObstacle < obstacle.radius + 30) {
+                        // Safety controller - avoid obstacle
+                        const avoidX = robot.x - obstacle.x;
+                        const avoidY = robot.y - obstacle.y;
+                        const avoidDist = Math.sqrt(avoidX**2 + avoidY**2);
+                        robot.x += (avoidX / avoidDist) * 2;
+                        robot.y += (avoidY / avoidDist) * 2;
+                    } else {
+                        // Normal controller - go to target
+                        const dist = Math.sqrt(dx**2 + dy**2);
+                        if (dist > 20) {
+                            robot.x += dx * 0.02;
+                            robot.y += dy * 0.02;
+                        }
+                    }
+                    
+                    animationId = requestAnimationFrame(drawControlSafety);
+                }
+            }
+
+            document.getElementById('normal-control').addEventListener('click', function() {
+                mode = 'normal';
+                isMoving = true;
+                drawControlSafety();
+            });
+
+            document.getElementById('safety-control').addEventListener('click', function() {
+                mode = 'safety';
+                isMoving = true;
+                drawControlSafety();
+            });
+
+            document.getElementById('reset-control-safety').addEventListener('click', function() {
+                isMoving = false;
+                cancelAnimationFrame(animationId);
+                robot = {x: 100, y: 150};
+                drawControlSafety();
+            });
+
+            drawControlSafety();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header animation
+        gsap.to("#header-animation", {
+            duration: 2,
+            rotation: 360,
+            repeat: -1,
+            ease: "none"
+        });
+    </script>
+</body>
+</html>
